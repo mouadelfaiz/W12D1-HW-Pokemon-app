@@ -16,7 +16,7 @@ class Index extends React.Component {
             <ul>
               <li>{capitalizedFirstName}</li>
               <li>
-                <a style={{ textDecoration: "none", color: "#00000" }}>About {poke.name}</a>
+                <a href={`poke/${i}`}  style={{ textDecoration: "none", color: "#00000" }}>About {poke.name}</a>
               </li>
             </ul>
           );
