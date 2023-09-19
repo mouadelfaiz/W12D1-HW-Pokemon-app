@@ -2,7 +2,7 @@ const React = require("react");
 
 class Index extends React.Component {
   render() {
-    const { pokemon } = this.props;
+    const { pokemons } = this.props;
     const myStyle = {
       color: "#ffffff",
       backgroundColor: "#a28089",
@@ -10,13 +10,13 @@ class Index extends React.Component {
     return (
       <div style={myStyle}>
         <h1>The Pokemon Views Index Page</h1>
-        {pokemon.map((poke, i) => {
-          const capitalizedFirstName = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
+        {pokemons.map((pokemon, i) => {
+          const capitalizedFirstName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
           return (
             <ul>
               <li>{capitalizedFirstName}</li>
               <li>
-                <a href={`poke/${i}`}  style={{ textDecoration: "none", color: "#00000" }}>About {poke.name}</a>
+                <a href={`pokemon/${i}`}  style={{ textDecoration: "none", color: "#11111" }}>More Info About {pokemon.name}</a>
               </li>
             </ul>
           );
