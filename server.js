@@ -14,6 +14,10 @@ app.get("/pokemon/", function (req, res) {
   res.render("pokemon/Index", {pokemon: pokemon});
 });
 
+app.get("/pokemon/:id", (req, res) => {
+  res.send(req.params.id)});
+
+
 app.listen(3000, () => {
   console.log("listening");
 });
