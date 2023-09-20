@@ -21,6 +21,10 @@ class Index extends React.Component {
             </ul>
           );
         })}
+        <br />
+      <a href="/pokemon/new" role="button" className="outline">
+        create pokemon
+      </a>
       </div>
     );
   }

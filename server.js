@@ -22,6 +22,9 @@ app.get("/pokemon/", function (req, res) {
   res.render("pokemon/Index", {pokemons: pokemons});
 });
 
+app.get("/pokemon/new", (req, res) => {
+  res.render("pokemon/New");
+});
 
 
 
