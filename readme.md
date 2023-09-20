@@ -1,4 +1,5 @@
-# Week 12 - Day 1
+# Week 12 - Day 1 HW
+# Week 12 - Day 2 HW
 ## Practice What You Learned
 ## Poke Express
 
