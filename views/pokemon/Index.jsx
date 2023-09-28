@@ -1,33 +1,88 @@
-const React = require("react");
+import React from "react";
+const DefaultLayout = require("../layout/Default");
 
-class Index extends React.Component {
-  render() {
-    const { pokemons } = this.props;
-    const myStyle = {
-      color: "#ffffff",
-      backgroundColor: "#a28089",
-    };
-    return (
-      <div style={myStyle}>
-        <h1>The Pokemon Views Index Page</h1>
-        {pokemons.map((pokemon, i) => {
-          const capitalizedFirstName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-          return (
-            <ul>
-              <li>{capitalizedFirstName}</li>
-              <li>
-                <a href={`pokemon/${i}`}  style={{ textDecoration: "none", color: "#11111" }}>More Info About {pokemon.name}</a>
-              </li>
-            </ul>
-          );
-        })}
-        <br />
-      <a href="/pokemon/new" role="button" className="outline">
-        create pokemon
-      </a>
-      </div>
-    );
-  }
+function capitalizeFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-module.exports = Index;
+export default function Index({ pokemons }) {
+  return (
+    <DefaultLayout>
+      <div>
+        <h1 style={{ textAlign: "center" }}>The Pokemon Index Page</h1>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <a href="/pokemon/new" role="button" style={{ marginRight: "10px" }}>
+            create pokemon
+          </a>
+          <a href="https:/www.pokemon.com/us/pokedex" role="button">
+            find Pokemon to add
+          </a>
+        </div>
+
+        <br />
+        <div>
+          {pokemons.map((pokemon, index) => {
+            return (
+              <div
+                key={index}
+                style={{
+                  marginBottom: "20px",
+                  padding: "10px",
+                  border: "1px solid #ccc",
+                }}
+              >
+                <h3>
+                  <a
+                    href={`pokemon/${pokemon.id}`}
+                    data-tooltip={`about ${pokemon.name}`}
+                    style={{ textDecoration: "none", color: "blue" }}
+                  >
+                    {capitalizeFirstLetter(pokemon.name)}
+                  </a>
+                </h3>
+                <ul>
+                  <li>
+                    {" "}
+                    <form
+                      action={`/pokemon/${pokemon._id}?_method=DELETE`}
+                      method="POST"
+                    >
+                      <input
+                        type="submit"
+                        value={`Delete ${pokemon.name}`}
+                        style={{
+                          width: "auto",
+                          backgroundColor: "red",
+                          color: "white",
+                          border: "none",
+                          cursor: "pointer",
+                        }}
+                      />
+                    </form>
+                  </li>
+                  <li>
+                    {" "}
+                    <a
+                      href={`/pokemon/${pokemon._id}/edit`}
+                      role="button"
+                      style={{
+                        width: "auto",
+                        backgroundColor: "green",
+                        color: "white",
+                        padding: "5px 10px",
+                        textDecoration: "none",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Edit {pokemon.name}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </DefaultLayout>
+  );
+}
