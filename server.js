@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 // METHOD OVERRIDE FOR FORM TO CREATE A DELETE REQUEST
 app.use(methodOverride("_method"));
 // FOR HOSTING STATIC FILES
-app.use(express.static("public"));
+
 // VIEW TEMPLATE ENGINE
 app.set("view engine", "jsx");
 app.engine("jsx", jsxEngine());
@@ -39,7 +39,7 @@ db.on('close', () => console.log('Mongo disconnected'));
 connectToMongo();
 
 app.get("/", (req, res) => {
-  res.render("pokemon/Home");
+  res.send("This is home page");
 });
 
 // INDEX
